@@ -18,6 +18,6 @@ class Booking extends Model
     }
     function bill()
     {
-        return $this->hasOne(Bill::class, 'service_id');
+        return $this->hasOne(Bill::class, 'service_id')->where('service_type', '=', 'booking');
     }
 }

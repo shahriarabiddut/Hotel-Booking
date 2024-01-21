@@ -1,11 +1,11 @@
 @extends('layout')
-@section('title', 'Department')
+@section('title', 'Facility')
 
 @section('content')
 
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Department</h1>
+    <h1 class="h3 mb-2 text-gray-800">Facility</h1>
             <!-- Session Messages Starts -->
             @if(Session::has('success'))
             <div class="p-3 mb-2 bg-success text-white">
@@ -21,8 +21,8 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Department Data
-            <a href="{{ route('department.create') }}" class="float-right btn btn-success btn-sm" target="_blank">Add New</a> </h6>
+            <h6 class="m-0 font-weight-bold text-primary">Facility Data
+            <a href="{{ route('facility.create') }}" class="float-right btn btn-success btn-sm" target="_blank">Add New</a> </h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -52,9 +52,9 @@
                             <td>{{ $d->detail }}</td>
                             
                             <td class="text-center">
-                                <a href="{{ url('admin/department/'.$d->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-                                <a href="{{ url('admin/department/'.$d->id.'/edit') }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                <a onclick="return confirm('Are You Sure?')" href="{{ url('admin/department/'.$d->id.'/delete') }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                <a href="{{ url('admin/facility/'.$d->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                <a href="{{ url('admin/facility/'.$d->id.'/edit') }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                <a onclick="return confirm('Are You Sure?')" href="{{ url('admin/facility/'.$d->id.'/delete') }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                             </td>
 
                         </tr>

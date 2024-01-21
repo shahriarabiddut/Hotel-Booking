@@ -83,7 +83,30 @@ class BookingController extends Controller
             return redirect('admin/booking/create')->with('success', 'Booking Data has been added Successfully!');
         }
     }
-
+    public function generateBill(string $id)
+    {
+        $data = Booking::find($id);
+        //Generate Bill
+        $date1 = Carbon::parse($data->checkin_date);
+        $date2 = Carbon::parse($data->checkout_date);
+        $diff = $date1->diff($date2);
+        $daysDifference = $diff->days;
+        if ($daysDifference == 0) {
+            $daysDifference = 1;
+        }
+        //
+        $room  = Room::find($data->room_id);
+        $roomType  = RoomType::find($room->room_type_id);
+        $dataBill = new Bill();
+        $dataBill->customer_id = $data->customer_id;
+        $dataBill->service_type = 'booking';
+        $dataBill->service_id = $data->id;
+        $dataBill->price = $roomType->price * $daysDifference;
+        $dataBill->status = 0;
+        $dataBill->save();
+        //
+        return redirect()->back()->with('danger', 'Booking Bill Generated!');
+    }
     /**
      * Display the specified resource.
      */
@@ -146,7 +169,9 @@ class BookingController extends Controller
     {
         //
         $data = Booking::find($id);
-        if ($data->bill->status == 0) {
+        if ($data->bill == null) {
+            return redirect()->back()->with('danger', 'Payment Not Found!');
+        } elseif ($data->bill->status == 0) {
             return view('front-payment', ['data' => $data]);
         } else {
             return redirect('welcome')->with('danger', 'Payment Request Found!');
@@ -155,11 +180,23 @@ class BookingController extends Controller
     public function admin_payment($id)
     {
         //
-        $data = Booking::find($id);
-        if ($data->bill->status == 0) {
-            return view('front-payment', ['data' => $data]);
+        $dataBooking = Booking::find($id);
+        $dataBill = Bill::all()->where('service_type', 'booking')->where('service_id', $id)->first();
+        if ($dataBooking->bill == null) {
+            return redirect()->back()->with('danger', 'Payment Not Found!');
         } else {
-            return redirect('welcome')->with('danger', 'Payment Request Found!');
+            //
+            $data = new Payment();
+            $data->customer_id = $dataBooking->customer_id;
+            $data->bill_id = $dataBill->id;
+            $data->price = $dataBill->price;
+            $data->method = 'Admin';
+            $data->status = 1;
+            $data->save();
+            //Bill Update
+            $dataBill->status = 2;
+            $dataBill->save();
+            return redirect()->back()->with('success', 'Payment Done!');
         }
     }
     public function paymentAccept($id)

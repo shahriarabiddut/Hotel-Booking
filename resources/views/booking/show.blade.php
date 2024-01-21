@@ -58,6 +58,8 @@
                             @else 
                             Paid (Bill - {{ $data->bill->price }} Tk)
                             @endif 
+                            @else
+                            Due <a href="{{ route('admin.generateBill',$data->id) }}" class="btn text-white btn-warning mx-1">Generate Bill</a>
                             @endif   
                             </td>
                         </tr><tr>

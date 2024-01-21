@@ -12,4 +12,16 @@ class Bill extends Model
     {
         return $this->hasOne(Payment::class, 'bill_id');
     }
+    function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
+    function booking()
+    {
+        return $this->belongsTo(Booking::class, 'service_id');
+    }
+    function facility()
+    {
+        return $this->belongsTo(Facility::class, 'service_id');
+    }
 }

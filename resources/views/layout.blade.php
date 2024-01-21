@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> LaraHall - @yield('title')</title>
+    <title> LaraHotel - @yield('title')</title>
     <!-- Custom fonts for this template-->
     <link href="{{  asset('vendor/fontawesome-free/css/all.min.css')  }}" rel="stylesheet" type="text/css">
     <link
@@ -57,7 +57,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Hall Room System
+                Hotel Room System
             </div>
 
             <!-- Nav Item Room Type - Pages Collapse Menu -->
@@ -93,12 +93,29 @@
                     </div>
                 </div>
             </li>
-
+        <!-- Nav Item Facility - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link @if (!request()->is('admin/department*'))
+                collapsed
+            @endif" href="#" data-toggle="collapse" data-target="#collapseFacility"
+                aria-expanded="true" aria-controls="collapseFacility">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Facility</span>
+            </a>
+            <div id="collapseFacility" class="collapse @if(request()->is('admin/department*')) show @endif" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Facility Management</h6>
+                    <a class="collapse-item" href="{{ route('facility.index') }}">View All</a>
+                    <a class="collapse-item" href="{{ route('facility.create') }}">Add new</a>
+                </div>
+            </div>
+        </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
             <div class="sidebar-heading">
-                Hall User System
+                Hotel User System
             </div>
 
             <!-- Nav Item Customer - Pages Collapse Menu -->
@@ -157,7 +174,7 @@
             <hr class="sidebar-divider">
             <!-- Heading -->
             <div class="sidebar-heading">
-                Hall Booking System
+                Hotel Booking System
             </div>
             <!-- Nav Item Booking - Utilities Collapse Menu -->
             <li class="nav-item">
@@ -182,9 +199,26 @@
             <hr class="sidebar-divider">
             <!-- Heading -->
             <div class="sidebar-heading">
-                Hall Meal System
+                Hotel Bill System
             </div>
-
+<!-- Nav Item Bill - Utilities Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link @if (!request()->is('admin/bill*'))
+        collapsed
+    @endif" href="#" data-toggle="collapse" data-target="#collapsebill"
+        aria-expanded="true" aria-controls="collapsebill">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Bill</span>
+    </a>
+    <div id="collapsebill" class="collapse @if(request()->is('admin/bill*')) show @endif" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Bill Management</h6>
+            <a class="collapse-item" href="{{ route('admin.bill.index') }}">View All Bills</a>
+            <a class="collapse-item" href="{{ route('admin.bill.create') }}">Generate New Bill</a>
+        </div>
+    </div>
+</li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
