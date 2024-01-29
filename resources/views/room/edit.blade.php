@@ -21,8 +21,8 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <tbody>
                     <tr>
-                        <th>Title</th>
-                        <td><input name="title" value="{{ $data->title }}" type="text" class="form-control"></td>
+                        <th>Room Number</th>
+                        <td><input name="title" value="{{ $data->title }}" type="number" class="form-control"></td>
                     </tr>
                     <tr>
                         <th>Select Room Type</th>

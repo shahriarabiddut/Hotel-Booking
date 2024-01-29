@@ -54,13 +54,17 @@
                             <td>{{ $d->price }}</td>
                             @if ($d->status==0)
                             <td class="bg-danger text-white"> Due
-                            @else
-                            <td class="bg-success text-white"> Paid
+                            @elseif($d->status==1)
+                            <td class="bg-warning text-white"> Processing
+                                @else
+                                <td class="bg-success text-white"> Paid
                             @endif
                             </td>
                             <td>
-                                @if ($d->status!=2)
+                                @if ($d->status<1)
                                 <a href="{{ route('admin.bill.payment',[$d->id,$d->customer->id]) }}" class="btn btn-info btn-sm"><i class="fa fa-token"></i> Pay </a>
+                                @elseif($d->status ==1)
+                                <a href="{{ route('admin.paymentAccept',$d->payment->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-token"></i> Accept </a>
                                 @else
                                 No Need
                                 @endif

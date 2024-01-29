@@ -69,7 +69,7 @@ class BillController extends Controller
             $this->generateBill($request->customer, 1, 'foodbill', $request->foodbill);
         }
         //
-        $data = Bill::all()->where('customer_id', '=', $request->customer)->where('status', '=', 0);
+        $data = Bill::all()->where('customer_id', '=', $request->customer)->where('status', '<=', 1);
         $customer = Customer::all()->where('id', '=', $request->customer)->first();
         return view('bill.show', ['data' => $data, 'customer' => $customer]);
     }
@@ -100,6 +100,7 @@ class BillController extends Controller
     {
         //
         $dataBill = Bill::find($id)->where('status', 0)->first();
+        dd($dataBill);
         if ($dataBill == null) {
             return redirect()->back()->with('danger', 'Bill Not Found!');
         } else {

@@ -202,8 +202,7 @@ class BookingController extends Controller
     public function paymentAccept($id)
     {
         //
-        $dataB = Booking::find($id);
-        $data = Payment::all()->where('bill_id', $dataB->bill->id)->first();
+        $data = Payment::find($id);
         $data->status = 1;
         $data->save();
         //Bill Update

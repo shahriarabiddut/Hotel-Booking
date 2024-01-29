@@ -74,10 +74,16 @@
                         @endswitch
                         {{ $bill->created_at }}
                     </td>
-                    <td> {{$bill->price}}</td>
+                    <td> {{$bill->price}} @if($bill->status==1)
+                        <span class="bg-warning text-white"> Processing (Paid By User)
+                        @endif
+                        </span>
+                    </td>
                     </tr>
                     @php
+                    if($bill->status!=1){
                     $totalBill +=$bill->price;
+                    }
                 @endphp
                 @endforeach
                 </tbody>

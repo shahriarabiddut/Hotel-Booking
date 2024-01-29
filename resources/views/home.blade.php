@@ -9,13 +9,13 @@ Home
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{{ asset('img/banner1.jpg') }}" class="d-block w-100" alt="...">
+            <img src="{{ asset('img/b1.jpeg') }}" width="100%" height="500px" class="d-block " alt="...">
           </div>
           <div class="carousel-item">
-            <img src="{{ asset('img/banner2.jpg') }}" class="d-block w-100" alt="...">
+            <img src="{{ asset('img/b2.jpeg') }}" width="100%" height="500px"  class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="{{ asset('img/banner3.jpg') }}" class="d-block w-100" alt="...">
+            <img src="{{ asset('img/b3.jpeg') }}" width="100%" height="500px"  class="d-block w-100" alt="...">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -31,31 +31,18 @@ Home
       {{-- Slider End --}}
       {{-- Service Start --}}
       <div class="container my-4" id="service">
-        <h1 class="text-center border-bottom bg-warning"> Services </h1>
+        <h1 class="text-center border-bottom bg-warning"> Faciliies </h1>
+        @foreach ($Facility as $data)
         <div class="row my-4">
-            <div class="col-md-4">
-                <img src="{{ asset('img/mario.jpg') }}" alt="" class="img-thumbnail">
-            </div>
-            <div class="col-md-8">
-                <h3 class="text-center">Service Heading</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure, itaque. Amet iste expedita saepe natus vero quis, voluptate nam, velit obcaecati deleniti iusto? Neque, quasi! Similique cum iure molestias aspernatur?
-                Inventore voluptatibus ut atque tempora beatae, dignissimos commodi error corporis ab quia.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure, itaque. Amet iste expedita saepe natus vero quis, voluptate nam, velit obcaecati deleniti iusto? Neque, quasi! Similique cum iure molestias aspernatur?
-                    Inventore voluptatibus ut atque tempora beatae, dignissimos commodi error corporis ab quia.</p>
-                <p><a href="#" class="btn btn-large btn-primary">Read More</a></p>
-            </div>
+          <div class="col-md-4">
+            <img src="{{ $data->image ? asset('storage/'. $data->image) : asset('img/mario.jpg')}}" width="50%" height="50%" alt="" class="img-thumbnail">
+          </div>
+          <div class="col-md-8">
+            <h3>{{ $data->title }}</h3>
+            <p>{{  $data->detail }}</p>
+          </div>
         </div>
-        <div class="row my-4">
-            <div class="col-md-4">
-                <img src="{{ asset('img/mario.jpg') }}" alt="" class="img-thumbnail">
-            </div>
-            <div class="col-md-8">
-                <h3 class="text-center">Service Heading 2</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure, itaque. Amet iste expedita saepe natus vero quis, voluptate nam, velit obcaecati deleniti iusto? Neque, quasi! Similique cum iure molestias aspernatur?
-                Inventore voluptatibus ut atque tempora beatae, dignissimos commodi error corporis ab quia.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure, itaque. Amet iste expedita saepe natus vero quis, voluptate nam, velit obcaecati deleniti iusto? Neque, quasi! Similique cum iure molestias aspernatur?
-                    Inventore voluptatibus ut atque tempora beatae, dignissimos commodi error corporis ab quia.</p>
-                <p><a href="#" class="btn btn-large btn-primary">Read More</a></p>
-            </div>
-        </div>
+        @endforeach
       </div>
       {{-- Service End --}}
       {{-- Gallery Start --}}

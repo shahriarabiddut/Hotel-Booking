@@ -47,7 +47,7 @@ Profile -  {{ session('CustomerData')[0]->full_name }}
                             <td>{{ $d->checkout_date }}</td>
                             <td>
                                 @if ($d->bill->status==0)
-                                 Due <a href="{{ route('admin.payment',$d->id) }}" class="btn text-white btn-info mx-1">Pay</a>
+                                 Due <a href="{{ route('payment',$d->id) }}" class="btn text-white btn-info mx-1">Pay</a>
                                 @elseif ($d->bill->status==1)
                                 Processing (Bill - {{ $d->bill->price }} Tk)
                                 @else 

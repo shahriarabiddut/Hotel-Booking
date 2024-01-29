@@ -20,8 +20,8 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <tbody>
                     <tr>
-                        <th>Title</th>
-                        <td><input required name="title" type="text" class="form-control"></td>
+                        <th>Room Number</th>
+                        <td><input required name="title" type="number" class="form-control"></td>
                     </tr><tr>
                         <th>Select Room Type</th>
                         <td>

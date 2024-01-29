@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('service_id')->nullable();
             $table->integer('price');
             $table->integer('status');
+            $table->string('extra')->nullable();
             $table->timestamps();
         });
     }
